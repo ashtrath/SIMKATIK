@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import type * as React from "react";
+import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { Button } from "~/components/ui/Button";
@@ -43,6 +43,14 @@ const PurchaseStockSheet = ({ ...props }: React.ComponentProps<typeof Sheet>) =>
     const quantity = form.watch("jumlah") || 0;
     const purchasePrice = form.watch("harga_beli") || 0;
     const pcsPerBox = form.watch("isi_perbox") || 1;
+
+    React.useEffect(() => {
+        if (isBox) {
+            form.register("isi_perbox");
+        } else {
+            form.unregister("isi_perbox");
+        }
+    }, [form.register, form.unregister, isBox]);
 
     const onSubmit = (input: PurchaseStockSchema) => {
         purchaseStock(input);
