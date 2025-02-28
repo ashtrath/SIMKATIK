@@ -1,0 +1,83 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+    "files": { "ignoreUnknown": false, "ignore": ["./src/styles/**/*"] },
+    "organizeImports": { "enabled": true },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "attributePosition": "auto"
+    },
+    "javascript": {
+        "jsxRuntime": "transparent",
+        "formatter": {
+            "enabled": true,
+            "arrowParentheses": "always",
+            "bracketSameLine": false,
+            "bracketSpacing": true,
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "quoteStyle": "double",
+            "semicolons": "always",
+            "trailingCommas": "all"
+        }
+    },
+    "json": { "formatter": { "enabled": true }, "linter": { "enabled": true } },
+    "css": { "formatter": { "enabled": true }, "linter": { "enabled": true } },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "correctness": {
+                "useExhaustiveDependencies": "warn",
+                "useHookAtTopLevel": "error",
+                "noVoidElementsWithChildren": "error"
+            },
+            "nursery": {
+                "useSortedClasses": {
+                    "fix": "safe",
+                    "level": "warn",
+                    "options": {
+                        "functions": ["cn", "cva"]
+                    }
+                }
+            },
+            "a11y": {
+                "useKeyWithClickEvents": "warn",
+                "useButtonType": "warn",
+                "useAnchorContent": "warn"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "warn"
+            }
+        },
+        "ignore": ["dist"]
+    },
+    "overrides": [
+        {
+            "include": ["**/*.{ts,tsx}"],
+            "linter": {
+                "rules": {
+                    "complexity": {
+                        "useOptionalChain": "error",
+                        "noUselessTypeConstraint": "error"
+                    },
+                    "style": {
+                        "useConst": "error",
+                        "noInferrableTypes": "error",
+                        "useSelfClosingElements": "error",
+                        "useFragmentSyntax": "error"
+                    },
+                    "suspicious": {
+                        "noExplicitAny": "error",
+                        "noExtraNonNullAssertion": "error",
+                        "noReactSpecificProps": "error"
+                    }
+                }
+            }
+        }
+    ]
+}

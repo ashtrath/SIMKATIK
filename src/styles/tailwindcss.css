@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "./tailwindcss-animate.css";
+
+@theme {
+    --default-font-family: "Montserrat", "sans-serif";
+
+    --color-background: oklch(97% 0.0097 125.68);
+    --color-foreground: oklch(19.35% 0.0031 196.9);
+    --color-card: oklch(97% 0.0097 125.68);
+    --color-card-foreground: oklch(19.35% 0.0031 196.9);
+    --color-popover: oklch(97% 0.0097 125.68);
+    --color-popover-foreground: oklch(19.35% 0.0031 196.9);
+    --color-primary: oklch(61.1% 0.1026 167.51);
+    --color-primary-foreground: oklch(95% 0.0097 125.68);
+    --color-secondary: oklch(48.6% 0.0985 247.85);
+    --color-secondary-foreground: oklch(98% 0 0);
+    --color-muted: oklch(92% 0.0097 125.68);
+    --color-muted-foreground: oklch(44.59% 0.0137 285.94);
+    --color-accent: oklch(92% 0.0097 125.68);
+    --color-accent-foreground: oklch(21.03% 0.0031 191.9);
+    --color-destructive: oklch(48.25% 0.1371 21.66);
+    --color-destructive-foreground: oklch(98% 0 0);
+    --color-border: oklch(76.56% 0.0087 133.91);
+    --color-input: oklch(76.56% 0.0087 133.91);
+    --color-ring: oklch(48.6% 0.0985 247.85);
+
+    --color-sidebar: oklch(97% 0.0097 125.68);
+    --color-sidebar-foreground: oklch(19.35% 0.0031 196.9);
+    --color-sidebar-primary: oklch(61.1% 0.1026 167.51);
+    --color-sidebar-primary-foreground: oklch(95% 0.0097 125.68);
+    --color-sidebar-accent: oklch(92% 0.0097 125.68);
+    --color-sidebar-accent-foreground: oklch(21.03% 0.0031 191.9);
+    --color-sidebar-border: oklch(92.78% 0.0058 264.53);
+    --color-sidebar-ring: oklch(48.6% 0.0985 247.85);
+
+    --sidebar-width: 16rem;
+    --sidebar-width-mobile: 18rem;
+    --sidebar-width-icon: 3rem;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-secondary/50;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
