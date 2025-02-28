@@ -67,7 +67,10 @@ const DataTable = <TData,>({ table, className, children, ...props }: DataTablePr
                                     colSpan={table.getAllColumns().length}
                                     className="h-[283px] text-center"
                                 >
-                                    <FileQuestion className="mx-auto mb-4 size-12" strokeWidth={1.666} />
+                                    <FileQuestion
+                                        className="mx-auto mb-4 size-12"
+                                        strokeWidth={1.666}
+                                    />
                                     Tidak ada data yang tersedia.
                                 </TableCell>
                             </TableRow>
