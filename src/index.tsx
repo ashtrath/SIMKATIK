@@ -1,11 +1,12 @@
+import { ProgressProvider } from "@bprogress/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 import { Toaster } from "sonner";
-import routes from "./lib/routes.tsx";
 
+import routes from "./lib/routes.tsx";
 import "./styles/tailwindcss.css";
 
 const queryClient = new QueryClient({
@@ -26,10 +27,16 @@ if (!rootElement.innerHTML) {
 
     root.render(
         <StrictMode>
-            <QueryClientProvider client={queryClient}>
-                <RouterProvider router={router} />
-                <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
+            <ProgressProvider
+                options={{ showSpinner: false, trickle: true }}
+                color="var(--color-primary)"
+                height="3px"
+            >
+                <QueryClientProvider client={queryClient}>
+                    <RouterProvider router={router} />
+                    <ReactQueryDevtools initialIsOpen={false} />
+                </QueryClientProvider>
+            </ProgressProvider>
             <Toaster expand={true} richColors={true} position="top-center" />
         </StrictMode>,
     );
