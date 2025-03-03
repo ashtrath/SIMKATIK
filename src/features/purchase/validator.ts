@@ -1,7 +1,5 @@
 import { z } from "zod";
-
-const MAX_FILE_SIZE = 2 * 1024 * 1024;
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from "~/constants/validatorRules";
 
 export const purchaseProductSchema = z.object({
     nama_produk: z.string(),
