@@ -14,10 +14,10 @@ const DashboardLayout = () => {
                     <Separator orientation="vertical" className="mr-2 h-4! bg-muted-foreground" />
                     <DashboardBreadcrumb />
                 </header>
-                <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                <main className="flex flex-1 flex-col gap-4 px-4">
                     <Outlet />
                 </main>
-                <footer className="p-4 pt-0">
+                <footer className="p-4">
                     <small className="font-medium text-sm">
                         &copy; Copyright 2025, SIMKATIK. All rights reserved.
                     </small>

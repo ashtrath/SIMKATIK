@@ -212,13 +212,7 @@ const DataTableToolbar = <TData,>({
     const isFiltered = table.getState().columnFilters.length > 0;
 
     return (
-        <div
-            className={cn(
-                "flex w-full items-center justify-between gap-2 overflow-auto",
-                className,
-            )}
-            {...props}
-        >
+        <div className={cn("flex w-full items-center justify-between gap-2", className)} {...props}>
             <div className="flex flex-1 items-center gap-2">
                 {filterFields.length > 0 &&
                     filterFields.map((field) => {
@@ -226,7 +220,7 @@ const DataTableToolbar = <TData,>({
                         if (!column) return null;
 
                         return (
-                            <div key={field.id} className="group relative max-w-[250px]">
+                            <div key={field.id} className="group relative max-w-sm">
                                 <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-2.5">
                                     <Search
                                         className="size-5 text-muted-foreground group-focus-within:text-foreground"
