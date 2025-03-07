@@ -1,6 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import dayjs from "dayjs";
 
+import { formatCurrency } from "~/lib/utils";
 import type { Purchase } from "../types";
 
 export const getColumns = (): ColumnDef<Purchase>[] => {
@@ -29,18 +30,14 @@ export const getColumns = (): ColumnDef<Purchase>[] => {
             accessorKey: "harga_beli",
             header: () => <div className="text-end">Harga Beli (pcs)</div>,
             cell: ({ row }) => (
-                <div className="text-end">
-                    Rp. {Number(row.getValue("harga_beli")).toLocaleString()}
-                </div>
+                <div className="text-end">{formatCurrency(row.getValue("harga_beli"))}</div>
             ),
         },
         {
             accessorKey: "total_harga",
             header: () => <div className="text-end">Total Harga</div>,
             cell: ({ row }) => (
-                <div className="text-end">
-                    Rp. {Number(row.getValue("total_harga")).toLocaleString()}
-                </div>
+                <div className="text-end">{formatCurrency(row.getValue("total_harga"))}</div>
             ),
         },
         {

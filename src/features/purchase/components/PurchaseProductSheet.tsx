@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import CurrencyInput from "~/components/composites/CurrencyInput";
 import { Button } from "~/components/ui/Button";
 import ImageUpload from "~/components/ui/ImageUpload";
 import { Input } from "~/components/ui/Input";
@@ -24,7 +25,7 @@ import {
     SheetTitle,
 } from "~/components/ui/Sheet";
 import useCategory from "~/features/category/hooks/useCategory";
-import { cn } from "~/lib/utils";
+import { cn, formatCurrency } from "~/lib/utils";
 import usePurchase from "../hooks/usePurchase";
 import { type PurchaseProductSchema, purchaseProductSchema } from "../validator";
 
@@ -37,6 +38,9 @@ const PurchaseProductSheet = ({ ...props }: React.ComponentProps<typeof Sheet>) 
         defaultValues: {
             jumlah: 1,
             satuan: "Box",
+            isi_perbox: 1,
+            harga_beli: 0,
+            harga_jual: 0,
         },
     });
 
@@ -118,11 +122,8 @@ const PurchaseProductSheet = ({ ...props }: React.ComponentProps<typeof Sheet>) 
                                                 <SelectValue placeholder="Box" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {["Box", "Pcs"].map((unit) => (
-                                                    <SelectItem key={unit} value={unit}>
-                                                        {unit}
-                                                    </SelectItem>
-                                                ))}
+                                                <SelectItem value="Box">Box</SelectItem>
+                                                <SelectItem value="Pcs">Pcs</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     )}
@@ -135,12 +136,34 @@ const PurchaseProductSheet = ({ ...props }: React.ComponentProps<typeof Sheet>) 
                             )}
                         </div>
                         <div className="grid gap-2.5">
-                            <Label htmlFor="nama_kategori">Harga Beli</Label>
-                            <Input {...form.register("harga_beli")} type="number" />
+                            <Label htmlFor="harga_beli">Harga Beli</Label>
+                            <Controller
+                                name="harga_beli"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <CurrencyInput
+                                        value={field.value}
+                                        onValueChange={(value) => {
+                                            field.onChange(value);
+                                        }}
+                                    />
+                                )}
+                            />
                         </div>
                         <div className="grid gap-2.5">
-                            <Label htmlFor="nama_kategori">Harga Jual</Label>
-                            <Input {...form.register("harga_jual")} type="number" />
+                            <Label htmlFor="harga_jual">Harga Jual</Label>
+                            <Controller
+                                name="harga_jual"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <CurrencyInput
+                                        value={field.value}
+                                        onValueChange={(value) => {
+                                            field.onChange(value);
+                                        }}
+                                    />
+                                )}
+                            />
                         </div>
                         <div className="col-span-2 grid gap-2.5">
                             <Label htmlFor="gambar_produk">Gambar Produk</Label>
@@ -158,11 +181,11 @@ const PurchaseProductSheet = ({ ...props }: React.ComponentProps<typeof Sheet>) 
                             <div className="font-semibold text-sm">Total Harga</div>
                             <div className="5 flex items-end gap-2">
                                 <span className="font-bold text-xl">
-                                    Rp. {(purchasePrice * quantity).toLocaleString()}
+                                    {formatCurrency(purchasePrice * quantity)}
                                 </span>
                                 {isBox && (
                                     <span className="font-medium text-sm">
-                                        Rp. {(purchasePrice / pcsPerBox).toLocaleString()} / pcs
+                                        {formatCurrency(purchasePrice / pcsPerBox)} / pcs
                                     </span>
                                 )}
                             </div>

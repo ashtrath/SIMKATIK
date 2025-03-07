@@ -35,3 +35,31 @@ export const getInitials = (input: string, maxInitials = 2) => {
 
     return initials.join("").toUpperCase();
 };
+
+interface FormatCurrencyOptions {
+    currency?: string;
+    locale?: string;
+    maximumFractionDigits?: number;
+    minimumFractionDigits?: number;
+    showSymbol?: boolean;
+}
+
+export const formatCurrency = (
+    value: number,
+    {
+        currency = "IDR",
+        locale = "id-ID",
+        maximumFractionDigits = 0,
+        minimumFractionDigits = 0,
+        showSymbol = true,
+    }: FormatCurrencyOptions = {},
+): string => {
+    return new Intl.NumberFormat(locale, {
+        currency,
+        style: showSymbol ? "currency" : "decimal",
+        currencyDisplay: "symbol",
+        currencySign: "standard",
+        maximumFractionDigits,
+        minimumFractionDigits,
+    }).format(value);
+};
