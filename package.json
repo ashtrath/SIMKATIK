@@ -49,5 +49,7 @@
         "typescript": "~5.7.2",
         "vite": "^6.1.0"
     },
-    "trustedDependencies": ["@biomejs/biome"]
+    "trustedDependencies": [
+        "@biomejs/biome"
+    ]
 }

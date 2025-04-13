@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./tailwindcss-animate.css";
+@import "tw-animate-css";
 
 @theme {
     --default-font-family: "Montserrat", "sans-serif";
