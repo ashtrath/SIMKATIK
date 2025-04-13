@@ -233,7 +233,7 @@ const DataTableToolbar = <TData,>({
                                     placeholder={field.placeholder ?? `Filter ${field.label}...`}
                                     value={(column.getFilterValue() as string) ?? ""}
                                     onChange={(e) => column.setFilterValue(e.target.value)}
-                                    className="border-foreground ps-10"
+                                    className="bg-background ps-10"
                                 />
                             </div>
                         );
