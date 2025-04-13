@@ -1,13 +1,18 @@
 import { Upload } from "lucide-react";
 import * as React from "react";
 
-interface ImageUploadProps extends Omit<React.ComponentProps<"input">, "value"> {
+interface ImageUploadProps extends Omit<React.ComponentProps<"input">, "value" | "defaultValue"> {
     onImageChange?: (file: File | null) => void;
+    defaultValue?: string;
 }
 
 const ImageUpload = React.forwardRef<HTMLInputElement, ImageUploadProps>(
-    ({ onImageChange, ...props }, ref) => {
-        const [imagePreview, setImagePreview] = React.useState<string | null>(null);
+    ({ onImageChange, defaultValue, ...props }, ref) => {
+        const [imagePreview, setImagePreview] = React.useState<string | null>(defaultValue || null);
+
+        React.useEffect(() => {
+            setImagePreview(defaultValue || null);
+        }, [defaultValue]);
 
         const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const file = e.target.files?.[0];
