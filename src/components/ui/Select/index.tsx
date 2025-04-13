@@ -7,9 +7,7 @@ const Select = SelectPrimitive.Root;
 
 const SelectGroup = SelectPrimitive.Group;
 
-const SelectValue = ({ ...props }: React.ComponentProps<typeof SelectPrimitive.Value>) => (
-    <SelectPrimitive.Value className="line-clamp-1 flex items-center gap-2" {...props} />
-);
+const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = ({
     className,
@@ -18,13 +16,13 @@ const SelectTrigger = ({
 }: React.ComponentProps<typeof SelectPrimitive.Trigger>) => (
     <SelectPrimitive.Trigger
         className={cn(
-            "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 font-medium text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
+            "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 font-medium text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
             className,
         )}
         {...props}
     >
         {children}
-        <SelectPrimitive.Icon asChild className="ml-2">
+        <SelectPrimitive.Icon asChild>
             <ChevronDownIcon className="size-4 opacity-50" />
         </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
