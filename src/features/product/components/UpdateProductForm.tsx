@@ -2,9 +2,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { FileQuestion } from "lucide-react";
+import { FileQuestion, MoreHorizontal, Trash2 } from "lucide-react";
 import CurrencyInput from "~/components/composites/CurrencyInput";
 import { Button } from "~/components/ui/Button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "~/components/ui/DropdownMenu";
 import ImageUpload from "~/components/ui/ImageUpload";
 import { Input } from "~/components/ui/Input";
 import { Label } from "~/components/ui/Label";
@@ -28,7 +34,7 @@ interface UpdateProductFormProps {
 }
 
 const UpdateProductForm = ({ isMobile }: UpdateProductFormProps) => {
-    const { updateProduct } = useProduct();
+    const { updateProduct, deleteProduct } = useProduct();
     const { selectedProduct, clearSelectedProduct } = useProductStore();
     const { categories, isLoading: categoryIsLoading } = useCategory();
 
@@ -172,7 +178,24 @@ const UpdateProductForm = ({ isMobile }: UpdateProductFormProps) => {
                     </div>
                 </div>
             </ScrollArea>
-            <div className={cn("grid grid-cols-2 gap-x-2.5 border-t pt-4", !isMobile && "px-6")}>
+            <div className={cn("flex gap-x-2.5 border-t pt-4", !isMobile && "px-6")}>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button size="icon" variant="outline">
+                            <MoreHorizontal />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="top">
+                        <DropdownMenuItem
+                            variant="destructive"
+                            disabled={selectedProduct.stok > 0}
+                            onClick={() => deleteProduct(selectedProduct.id)}
+                        >
+                            <Trash2 />
+                            Hapus Produk
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
                 {isMobile ? (
                     <SheetClose asChild>
                         <Button
@@ -180,6 +203,7 @@ const UpdateProductForm = ({ isMobile }: UpdateProductFormProps) => {
                             variant="outline"
                             onClick={onCancel}
                             disabled={form.formState.isSubmitting}
+                            className="flex-1"
                         >
                             Batal
                         </Button>
@@ -189,11 +213,14 @@ const UpdateProductForm = ({ isMobile }: UpdateProductFormProps) => {
                         variant="outline"
                         onClick={onCancel}
                         disabled={form.formState.isSubmitting}
+                        className="flex-1"
                     >
                         Batal
                     </Button>
                 )}
-                <Button disabled={form.formState.isSubmitting}>Simpan</Button>
+                <Button disabled={form.formState.isSubmitting} className="flex-1">
+                    Simpan
+                </Button>
             </div>
         </form>
     );
