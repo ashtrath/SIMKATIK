@@ -8,6 +8,7 @@ import LoginPage from "~/pages/Auth/LoginPage";
 import CategoryPage from "~/pages/Category";
 import DashboardPage from "~/pages/DashboardPage";
 import EmployeePage from "~/pages/Employee";
+import ProductPage from "~/pages/Product";
 import PurchasePage from "~/pages/Purchase";
 
 const routes: RouteObject[] = [
@@ -69,6 +70,7 @@ const routes: RouteObject[] = [
                             },
                             {
                                 path: "products",
+                                element: <ProductPage />,
                                 handle: {
                                     crumb: "Data Produk",
                                 },
