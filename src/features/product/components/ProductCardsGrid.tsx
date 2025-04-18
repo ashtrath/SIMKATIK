@@ -15,14 +15,26 @@ import {
 } from "~/components/ui/Select";
 import useCategory from "~/features/category/hooks/useCategory";
 import useProduct from "../hooks/useProduct";
+import { useProductStore } from "../stores/use-product-store";
 import ProductCard from "./ProductCard";
+
+const SORT_OPTIONS = {
+    NONE: "none",
+    STOCK_ASC: "stock_asc",
+    STOCK_DESC: "stock_desc",
+    PRICE_ASC: "price_asc",
+    PRICE_DESC: "price_desc",
+} as const;
 
 const ProductCardsGrid = () => {
     const { products } = useProduct();
     const { categories } = useCategory();
+    const { selectedProduct, setSelectedProduct } = useProductStore();
+
     const [searchQuery, setSearchQuery] = React.useState<string>("");
     const [selectedCategory, setSelectedCategory] = React.useState<string>("all");
-    const [sortBy, setSortBy] = React.useState<"none" | "stock_asc" | "stock_desc">("none");
+    const [sortBy, setSortBy] =
+        React.useState<(typeof SORT_OPTIONS)[keyof typeof SORT_OPTIONS]>("none");
 
     const filteredProducts = React.useMemo(() => {
         const query = searchQuery.trim().toLowerCase();
@@ -35,12 +47,20 @@ const ProductCardsGrid = () => {
             return nameMatch && categoryMatch;
         });
 
-        if (sortBy !== "none") {
+        if (sortBy !== SORT_OPTIONS.NONE) {
             filtered = [...filtered].sort((a, b) => {
-                if (sortBy === "stock_asc") {
-                    return a.stok - b.stok;
+                switch (sortBy) {
+                    case SORT_OPTIONS.STOCK_ASC:
+                        return a.stok - b.stok;
+                    case SORT_OPTIONS.STOCK_DESC:
+                        return b.stok - a.stok;
+                    case SORT_OPTIONS.PRICE_ASC:
+                        return (a.harga_jual ?? 0) - (b.harga_jual ?? 0);
+                    case SORT_OPTIONS.PRICE_DESC:
+                        return (b.harga_jual ?? 0) - (a.harga_jual ?? 0);
+                    default:
+                        return 0;
                 }
-                return b.stok - a.stok;
             });
         }
 
@@ -117,6 +137,12 @@ const ProductCardsGrid = () => {
                                             <SelectItem value="stock_desc">
                                                 Stok: Tinggi ke Rendah
                                             </SelectItem>
+                                            <SelectItem value="price_asc">
+                                                Harga: Rendah ke Tinggi
+                                            </SelectItem>
+                                            <SelectItem value="price_desc">
+                                                Harga: Tinggi ke Rendah
+                                            </SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -129,7 +155,16 @@ const ProductCardsGrid = () => {
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,1fr))] gap-4 pr-3 pb-1">
                         {filteredProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                onClick={() => setSelectedProduct(product)}
+                                className={
+                                    selectedProduct?.id === product.id
+                                        ? "border-primary shadow-lg"
+                                        : ""
+                                }
+                            />
                         ))}
                     </div>
                 ) : (

@@ -1,22 +1,21 @@
 import { TriangleAlert } from "lucide-react";
+import type React from "react";
 import { Badge } from "~/components/ui/Badge";
 import { cn, formatCurrency } from "~/lib/utils";
-import { useProductStore } from "../stores/use-product-store";
 import type { Product } from "../types";
 
-interface ProductCardProps {
+interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
     product: Product;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
-    const { selectedProduct, setSelectedProduct } = useProductStore();
+const ProductCard = ({ product, className, ...props }: ProductCardProps) => {
     return (
         <div
-            onClick={() => setSelectedProduct(product)}
             className={cn(
                 "group relative w-full cursor-pointer space-y-4 rounded-xl border bg-card p-4 text-card-foreground shadow",
-                selectedProduct?.id === product.id && "border-primary shadow-lg",
+                className,
             )}
+            {...props}
         >
             <figure className="relative group-hover:opacity-90">
                 <img
