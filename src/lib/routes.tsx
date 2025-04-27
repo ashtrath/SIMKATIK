@@ -5,6 +5,7 @@ import DashboardLayout from "~/components/layouts/DashboardLayout";
 import RootLayout from "~/components/layouts/RootLayout";
 import PrivateRoute from "~/features/auth/components/PrivateRoute";
 import LoginPage from "~/pages/Auth/LoginPage";
+import CashierPage from "~/pages/Cashier";
 import CategoryPage from "~/pages/Category";
 import DashboardPage from "~/pages/DashboardPage";
 import EmployeePage from "~/pages/Employee";
@@ -44,8 +45,9 @@ const routes: RouteObject[] = [
                             },
                             {
                                 path: "cashier",
+                                element: <CashierPage />,
                                 handle: {
-                                    crumb: "Kasir",
+                                    crumb: "Catat Penjualan",
                                 },
                             },
                             {

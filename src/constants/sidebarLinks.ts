@@ -21,7 +21,7 @@ export const POS_LINKS: NavLink[] = [
         icon: ArrowRightSquare,
     },
     {
-        name: "Kasir",
+        name: "Catat Penjualan",
         href: "/cashier",
         icon: HandCoins,
     },
@@ -34,14 +34,14 @@ export const POS_LINKS: NavLink[] = [
 
 export const DATA_MANAGEMENT_LINKS: NavLink[] = [
     {
-        name: "Data Kategori",
-        href: "/categories",
-        icon: Grid2X2Plus,
-    },
-    {
         name: "Data Produk",
         href: "/products",
         icon: Package2,
+    },
+    {
+        name: "Data Kategori",
+        href: "/categories",
+        icon: Grid2X2Plus,
     },
     {
         name: "Data Karyawan",
