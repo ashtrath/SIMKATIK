@@ -10,7 +10,7 @@ import { useCartStore } from "~/features/cashier/stores/use-cart-store";
 
 const CashierPage = () => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
-    const { products, actionFeedback } = useCartStore();
+    const { products, actionFeedback, clearActionFeedback } = useCartStore();
 
     const totalQuantity = React.useMemo(
         () => Object.values(products).reduce((total, item) => total + item.quantity, 0),
@@ -35,8 +35,9 @@ const CashierPage = () => {
                 default:
                     toast(actionFeedback.message);
             }
+            clearActionFeedback();
         }
-    }, [actionFeedback]);
+    }, [actionFeedback, clearActionFeedback]);
 
     return (
         <div className="flex h-[calc(100svh-64px-40px-16px)] gap-4 group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-[calc(100svh-64px-40px)]">

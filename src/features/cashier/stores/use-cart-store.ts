@@ -19,6 +19,7 @@ interface CartState {
     decreaseQuantity: (productId: number) => void;
     setQuantity: (productId: number, quantity: number) => void;
     clearCart: () => void;
+    clearActionFeedback: () => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -183,4 +184,6 @@ export const useCartStore = create<CartState>((set, get) => ({
         ),
 
     clearCart: () => set({ products: {}, actionFeedback: null }),
+
+    clearActionFeedback: () => set({ actionFeedback: null }),
 }));
