@@ -1,6 +1,7 @@
-import { Plus } from "lucide-react";
+import { Plus, Printer } from "lucide-react";
 import * as React from "react";
 
+import { toast } from "sonner";
 import { Button } from "~/components/ui/Button";
 import { DataTable, DataTableToolbar } from "~/components/ui/DataTable";
 import {
@@ -44,6 +45,13 @@ const PurchaseDataTable = () => {
         <>
             <DataTable table={table}>
                 <DataTableToolbar table={table} filterFields={filterFields}>
+                    <Button
+                        variant="secondary"
+                        onClick={() => toast.info("Fitur Laporan belum di implementasi.")}
+                    >
+                        <Printer />
+                        Print Pdf
+                    </Button>
                     <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
                             <Button>

@@ -3,6 +3,7 @@ import "dayjs/locale/id";
 import { Filter, MoreHorizontal, Printer, View } from "lucide-react";
 import * as React from "react";
 
+import { toast } from "sonner";
 import { Button } from "~/components/ui/Button";
 import {
     Dialog,
@@ -76,8 +77,12 @@ const TransactionList = () => {
                         </div>
                     </PopoverContent>
                 </Popover>
-                <Button variant="secondary">
-                    <Printer /> Print PDF
+                <Button
+                    variant="secondary"
+                    onClick={() => toast.info("Fitur Laporan belum di implementasi.")}
+                >
+                    <Printer />
+                    Print Pdf
                 </Button>
             </div>
             <ul className="space-y-4">
