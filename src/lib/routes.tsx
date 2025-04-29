@@ -11,6 +11,7 @@ import DashboardPage from "~/pages/DashboardPage";
 import EmployeePage from "~/pages/Employee";
 import ProductPage from "~/pages/Product";
 import PurchasePage from "~/pages/Purchase";
+import TransactionPage from "~/pages/Transaction";
 
 const routes: RouteObject[] = [
     {
@@ -47,7 +48,7 @@ const routes: RouteObject[] = [
                                 path: "cashier",
                                 element: <CashierPage />,
                                 handle: {
-                                    crumb: "Catat Penjualan",
+                                    crumb: "Penjualan",
                                 },
                             },
                             {
@@ -59,6 +60,7 @@ const routes: RouteObject[] = [
                             },
                             {
                                 path: "history",
+                                element: <TransactionPage />,
                                 handle: {
                                     crumb: "Histori",
                                 },

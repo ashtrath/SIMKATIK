@@ -51,7 +51,7 @@ const ProductCard = ({ product, className, ...props }: ProductCardProps) => {
                         className={cn(
                             "ml-1.5 font-semibold text-foreground",
                             product.stok <= 50 && "text-yellow-600",
-                            product.stok <= 20 && "text-destructive",
+                            product.stok <= 0 && "text-destructive",
                         )}
                     >
                         {product.stok}

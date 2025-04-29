@@ -8,6 +8,10 @@ export interface Transaction {
     metode_pembayaran_id: number;
     items: TransactionItem[];
     user: User;
+    metode_pembayaran: {
+        id: number;
+        nama: string;
+    };
     created_at: string;
     updated_at: string;
 }

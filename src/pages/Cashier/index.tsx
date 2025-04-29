@@ -1,9 +1,9 @@
 import { ShoppingCart } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
+
 import { Badge } from "~/components/ui/Badge";
 import { Button } from "~/components/ui/Button";
-
 import CashierCheckoutSheet from "~/features/cashier/components/CashierCheckoutSheet";
 import CashierProductGrid from "~/features/cashier/components/CashierProductGrid";
 import { useCartStore } from "~/features/cashier/stores/use-cart-store";

@@ -21,7 +21,7 @@ export const POS_LINKS: NavLink[] = [
         icon: ArrowRightSquare,
     },
     {
-        name: "Catat Penjualan",
+        name: "Penjualan",
         href: "/cashier",
         icon: HandCoins,
     },
